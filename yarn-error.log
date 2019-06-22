@@ -1,21 +1,21 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-native-vector-icons
+  C:\Program Files\nodejs\node.exe C:\Users\WJML\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
 
 PATH: 
-  C:\Users\Isadora\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Isadora\bin;C:\Python27;C:\Python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Program Files\Git\cmd;C:\Program Files\PuTTY;C:\WINDOWS\System32\OpenSSH;C:\Program Files\MySQL\MySQL Utilities 1.6;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_201\bin;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\tools;C:\Program Files (x86)\Yarn\bin;C:\Users\Isadora\AppData\Local\Microsoft\WindowsApps;C:\Users\Isadora\AppData\Local\atom\bin;C:\Users\Isadora\AppData\Local\Microsoft\WindowsApps;C:\Users\Isadora\AppData\Local\GitHubDesktop\bin;C:\Program Files\heroku\bin;C:\Users\Isadora\Desktop\heroku\bin;C:\Users\Isadora\AppData\Roaming\npm;C:\Android\Sdk\platform-tools;C:\Android\Sdk\tools;C:\Users\Isadora\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Isadora\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Users\WJML\AppData\Local\Programs\Git\cmd;C:\Go\bin;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\WJML\AppData\Local\Microsoft\WindowsApps;C:\Users\WJML\AppData\Roaming\npm;C:\Users\WJML\AppData\Local\Programs\Microsoft VS Code\bin;C:\Android\Sdk\platform-tools;C:\Android\Sdk\tools;C:\Users\WJML\go\bin
 
 Yarn version: 
-  1.15.2
+  1.16.0
 
 Node version: 
-  10.15.3
+  12.2.0
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com registry.yarnpkg.com:443
-      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:56:26)
+  Error: connect EHOSTUNREACH 104.16.18.35:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1054:14)
 
 npm manifest: 
   {

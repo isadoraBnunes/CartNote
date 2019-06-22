@@ -3,13 +3,12 @@ import { Provider as PaperProvider, Text } from 'react-native-paper';
 
 class App extends Component {
   render() {
-    return {
+    return(
       < PaperProvider >
-      <Text>Hi</Text>
+        <Text>Hi</Text>
       </PaperProvider >
-      
-    }
-}
+    )
+  }
 }
 
 export default App
