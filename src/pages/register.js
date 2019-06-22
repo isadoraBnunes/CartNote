@@ -37,8 +37,8 @@ class register extends Component {
 
                     <Title style={styles.title}>CartNote</Title>
 
-                    <Button style={styles.Loginbottom} mode="contained" onPress={() => }> Login </Button>
-                    <Button style={styles.SignUpbottom} mode="contained" onPress={() => }> Sign Up </Button>
+                    <Button style={styles.Loginbottom} mode="contained" > Login </Button>
+                    <Button style={styles.SignUpbottom} mode="contained"> Sign Up </Button>
 
                     <Surface style={styles.surface}>
                         <Surface style={styles.surfaceLogin}>
@@ -52,7 +52,7 @@ class register extends Component {
                                 value={this.state.text}
                                 onChangeText={text => this.setState({ text })}
                             />
-                            <Button style={styles.surfacebottomLogin} mode="contained" onPress={() => }> Login </Button>
+                            <Button style={styles.surfacebottomLogin} mode="contained" > Login </Button>
                         </Surface>
 
                         <Surface style={styles.surfaceSignUp}>
@@ -71,7 +71,7 @@ class register extends Component {
                                 value={this.state.text}
                                 onChangeText={text => this.setState({ text })}
                             />
-                            <Button style={styles.surfaceBottomSignUp} mode="contained" onPress={() => }> Sign Up </Button>
+                            <Button style={styles.surfaceBottomSignUp} mode="contained" > Sign Up </Button>
                         </Surface>
                     </Surface>
                 </PaperProvider>
