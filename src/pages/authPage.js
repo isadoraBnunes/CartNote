@@ -43,10 +43,9 @@ export default class authPage extends Component {
 		return;
 	};
 
-	componentWillMount() {
+	componentDidMount() {
 		this.selectedOptionStyle();
 	}
-
 	render() {
 		return (
 			<View style={styles.mainView}>
