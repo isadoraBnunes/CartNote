@@ -14,46 +14,121 @@ export default class authPage extends Component {
 	state = {
 		username: "",
 		password: "",
-		passwordConfirmation: ""
+		passwordConfirmation: "",
+		selectedOption: "ENTRAR"
 	};
+
+	selectedOptionStyle = function() {
+		switch (this.state.selectedOption) {
+			case "ENTRAR":
+				styles.login = {
+					width: 260
+				};
+				styles.signup = {
+					width: 0,
+					height: 0
+				};
+				break;
+			case "CADASTRAR":
+				styles.signup = {
+					width: 260
+				};
+				styles.login = {
+					width: 0,
+					height: 0
+				};
+				break;
+		}
+		console.log(this.state.selectedOption);
+		return;
+	};
+
+	componentWillMount() {
+		this.selectedOptionStyle();
+	}
+
 	render() {
 		return (
 			<View style={styles.mainView}>
 				<Image source={logo} style={styles.logo} />
-				<View style={styles.options}>
+				<View name="ide" style={styles.options}>
 					<Text
 						style={styles.option}
 						onPress={() => {
-							console.log("aaa");
+							this.setState({ selectedOption: "ENTRAR" });
+							this.selectedOptionStyle();
 						}}
 					>
 						entrar
 					</Text>
-					<Text style={styles.option} onPress={() => {}}>
+					<Text
+						style={styles.option}
+						onPress={() => {
+							this.setState({ selectedOption: "CADASTRAR" });
+							this.selectedOptionStyle();
+						}}
+					>
 						cadastrar
 					</Text>
 				</View>
 				<View style={styles.auth}>
-					<View style={styles.form}>
-						<Icon name="person-outline" style={styles.formIcon} />
-						<TextInput
-							style={styles.formInput}
-							placeholder="Usuário"
-							value={this.state.username}
-							onChangeText={text => this.setState({ username: text })}
-						/>
+					<View style={styles.login}>
+						<View style={styles.form}>
+							<Icon name="person-outline" style={styles.formIcon} />
+							<TextInput
+								style={styles.formInput}
+								placeholder="Usuário"
+								value={this.state.username}
+								onChangeText={text => this.setState({ username: text })}
+							/>
+						</View>
+						<View style={styles.form}>
+							<Icon name="lock-outline" style={styles.formIcon} />
+							<TextInput
+								style={styles.formInput}
+								placeholder="Senha"
+								secureTextEntry={true}
+								value={this.state.password}
+								onChangeText={text => this.setState({ password: text })}
+							/>
+						</View>
 					</View>
-					<View style={styles.form}>
-						<Icon name="lock-outline" style={styles.formIcon} />
-						<TextInput
-							style={styles.formInput}
-							placeholder="Senha"
-							value={this.state.password}
-							onChangeText={text => this.setState({ password: text })}
-						/>
+
+					<View style={styles.signup}>
+						<View style={styles.form}>
+							<Icon name="person-outline" style={styles.formIcon} />
+							<TextInput
+								style={styles.formInput}
+								placeholder="Usuário"
+								value={this.state.username}
+								onChangeText={text => this.setState({ username: text })}
+							/>
+						</View>
+						<View style={styles.form}>
+							<Icon name="lock-outline" style={styles.formIcon} />
+							<TextInput
+								style={styles.formInput}
+								placeholder="Senha"
+								secureTextEntry={true}
+								value={this.state.password}
+								onChangeText={text => this.setState({ password: text })}
+							/>
+						</View>
+						<View style={styles.form}>
+							<Icon name="lock-outline" style={styles.formIcon} />
+							<TextInput
+								style={styles.formInput}
+								placeholder="Confirme a senha"
+								secureTextEntry={true}
+								value={this.state.password}
+								onChangeText={text => this.setState({ password: text })}
+							/>
+						</View>
 					</View>
 					<TouchableOpacity style={styles.submitButton}>
-						<Text style={styles.submitButtonText}>ENTRAR</Text>
+						<Text style={styles.submitButtonText}>
+							{this.state.selectedOption}
+						</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -62,6 +137,12 @@ export default class authPage extends Component {
 }
 
 const styles = StyleSheet.create({
+	login: {
+		width: 260
+	},
+	signup: {
+		width: 260
+	},
 	mainView: {
 		flex: 1,
 		backgroundColor: "#6155ea",
@@ -82,7 +163,8 @@ const styles = StyleSheet.create({
 		flex: 0.4,
 		fontSize: 20,
 		textAlign: "center",
-		color: "#ccc"
+		color: "#FFF",
+		opacity: 0.6
 	},
 	auth: {
 		padding: 20,
