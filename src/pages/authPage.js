@@ -19,7 +19,7 @@ export default class authPage extends Component {
 		selectedOption: "ENTRAR"
 	};
 
-	selectedOptionStyle = function() {
+	selectedOptionStyle = function () {
 		switch (this.state.selectedOption) {
 			case "ENTRAR":
 				styles.login = {
@@ -44,22 +44,34 @@ export default class authPage extends Component {
 		return;
 	};
 
-	componentWillMount() {
+	selectedOptionBase = function () {
+		switch (this.state.selectedOption) {
+			case "ENTRAR":
+
+				break;
+			case "CADASTRAR":
+				this.handleSubmit;
+				break;
+		}
+		console.log(this.state.selectedOption);
+		return;
+	}
+
+
+	componentDidMount() {
 		this.selectedOptionStyle();
+		this.selectedOptionBase();
 	}
 
 	handleSubmit = async () => {
 		const resposta = await api.post("user", {
-		  username: this.state.username,
-		  password: this.state.password,
-		
-		});
-	
-		this.props.navigation.navigate("index");
-	  };
+			username: this.state.username,
+			password: this.state.password,
 
-	render(props) {
-		console.log(this.props);
+		});
+	};
+
+	render() {
 		return (
 			<View style={styles.mainView}>
 				<Image source={logo} style={styles.logo} />
@@ -69,6 +81,7 @@ export default class authPage extends Component {
 						onPress={() => {
 							this.setState({ selectedOption: "ENTRAR" });
 							this.selectedOptionStyle();
+							this.selectedOptionBase();
 						}}
 					>
 						entrar
@@ -78,6 +91,7 @@ export default class authPage extends Component {
 						onPress={() => {
 							this.setState({ selectedOption: "CADASTRAR" });
 							this.selectedOptionStyle();
+							this.selectedOptionBase();
 						}}
 					>
 						cadastrar
