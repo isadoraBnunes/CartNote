@@ -9,6 +9,7 @@ import {
 	TouchableOpacity,
 	Image
 } from "react-native";
+import api from "../../services/api";
 
 export default class authPage extends Component {
 	state = {
@@ -47,7 +48,18 @@ export default class authPage extends Component {
 		this.selectedOptionStyle();
 	}
 
-	render() {
+	handleSubmit = async () => {
+		const resposta = await api.post("user", {
+		  username: this.state.username,
+		  password: this.state.password,
+		
+		});
+	
+		this.props.navigation.navigate("index");
+	  };
+
+	render(props) {
+		console.log(this.props);
 		return (
 			<View style={styles.mainView}>
 				<Image source={logo} style={styles.logo} />
