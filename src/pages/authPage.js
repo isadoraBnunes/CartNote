@@ -110,8 +110,10 @@ export default class authPage extends Component {
 								style={styles.formInput}
 								placeholder="Senha"
 								secureTextEntry={true}
-								value={this.state.password}
-								onChangeText={text => this.setState({ password: text })}
+								value={this.state.passwordConfirmation}
+								onChangeText={text =>
+									this.setState({ passwordConfirmation: text })
+								}
 							/>
 						</View>
 						<View style={styles.form}>
