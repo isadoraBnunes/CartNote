@@ -15,7 +15,7 @@ export default class productList extends Component {
 	state = {
 		username: "Willian" //teste
 	};
-	render() {
+	renderProductsListSchema = ({ProductsList}) => {
 		return (
 			<View style={styles.mainView}>
 				<TouchableOpacity style={styles.addButton}>
@@ -26,12 +26,26 @@ export default class productList extends Component {
 				</View>
 				<Icon name="keyboard-arrow-down" color={"#fff"} size={16} />
 				<ScrollView style={styles.list}>
-					<Text>willian</Text>
+					<Text style={styles.productListName}>{ProductsList.name}</Text>
 				</ScrollView>
 			</View>
 		);
 	}
+
+	render() {
+        return (
+            <View style={styles.container}>
+                <FlatList
+                    contentContainerStyle={styles.list}
+                    data={this.state.docs}
+                    keyExtractor={ ProductsList => ProductsList._id}
+                    renderProductsListSchema={this.renderProductsListSchema}
+                />
+            </View>
+        );
+    }
 }
+
 const styles = StyleSheet.create({
 	addButton: {
 		position: "absolute",
@@ -69,5 +83,8 @@ const styles = StyleSheet.create({
 		width: 340,
 		marginBottom: 20,
 		// backgroundColor: "#fff"
+	},
+	productListName:{
+		color: '#FFF'
 	}
 });
