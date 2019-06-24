@@ -22,9 +22,7 @@ export default class product extends Component {
 		return (
 			<View style={styles.productContainer}>
 				<View style={styles.containerList}>
-					<Text style={styles.productDescription}>
-						{ProductSchema.description}
-					</Text>
+					<Text style={styles.productDescription}>{ProductSchema.description}</Text>
 				</View>
 				<View style={styles.containerList}>
 					<Text style={styles.productUnit}>{ProductSchema.unit}</Text>
@@ -32,13 +30,8 @@ export default class product extends Component {
 				<View style={styles.containerList}>
 					<Text style={styles.productQuantity}>{ProductSchema.quantity}</Text>
 				</View>
-				<TouchableOpacity
-					style={styles.productButton}
-					onPress={() => {
-						api.delete(`/products/${ProductSchema._id}`);
-					}}
-				>
-					<Icon name="delete" color={"#2c1ce0"} size={50} />
+				<TouchableOpacity style={styles.productButton} onPress={() => {api.delete(`/products/${ProductSchema._id}`)}}>
+					<Icon name="delete" color={"#6155ea"} size={30} />
 				</TouchableOpacity>
 			</View>
 		);
@@ -94,15 +87,16 @@ const styles = StyleSheet.create({
 		color: "#999"
 	},
 	productButton: {
-		position: "absolute",
+		// position: "absolute",
 		width: 20,
-		height: 20,
-		alignItems: "center",
-		justifyContent: "center",
-		right: 30,
-		bottom: 30,
+        height: 20,
+
+		alignItems: "flex-end",
+		// justifyContent: "center",
+		// right: 30,
+		// bottom: 30,
 		// borderRadius: 50,
 		// backgroundColor: "#2c1ce0",
-		elevation: 3
+		// elevation: 3
 	}
 });
