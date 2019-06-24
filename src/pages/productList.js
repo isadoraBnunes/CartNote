@@ -8,6 +8,7 @@ import {
 	StyleSheet,
 	TouchableOpacity,
 	ScrollView,
+	FlatList,
 	Image
 } from "react-native";
 
@@ -15,12 +16,9 @@ export default class productList extends Component {
 	state = {
 		username: "Willian" //teste
 	};
-	renderProductsListSchema = ({ProductsList}) => {
+	renderProductsListSchema = ({ ProductsList }) => {
 		return (
 			<View style={styles.mainView}>
-				<TouchableOpacity style={styles.addButton}>
-					<Icon name="add" color={"#fff"} size={50} />
-				</TouchableOpacity>
 				<View style={styles.header}>
 					<Image source={logo} style={styles.logo} />
 				</View>
@@ -30,20 +28,20 @@ export default class productList extends Component {
 				</ScrollView>
 			</View>
 		);
-	}
+	};
 
 	render() {
-        return (
-            <View style={styles.container}>
-                <FlatList
-                    contentContainerStyle={styles.list}
-                    data={this.state.docs}
-                    keyExtractor={ ProductsList => ProductsList._id}
-                    renderProductsListSchema={this.renderProductsListSchema}
-                />
-            </View>
-        );
-    }
+		return (
+			<View style={styles.container}>
+				<FlatList
+					contentContainerStyle={styles.list}
+					data={this.state.docs}
+					keyExtractor={ProductsList => ProductsList._id}
+					renderProductsListSchema={this.renderProductsListSchema}
+				/>
+			</View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
@@ -81,10 +79,10 @@ const styles = StyleSheet.create({
 	list: {
 		flex: 1,
 		width: 340,
-		marginBottom: 20,
+		marginBottom: 20
 		// backgroundColor: "#fff"
 	},
-	productListName:{
-		color: '#FFF'
+	productListName: {
+		color: "#FFF"
 	}
 });

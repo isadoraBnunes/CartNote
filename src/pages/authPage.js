@@ -16,10 +16,10 @@ export default class authPage extends Component {
 		username: "",
 		password: "",
 		passwordConfirmation: "",
-		selectedOption: "ENTRAR"
+		selectedOption: ""
 	};
 
-	selectedOptionStyle = function () {
+	selectedOptionStyle = function() {
 		switch (this.state.selectedOption) {
 			case "ENTRAR":
 				styles.login = {
@@ -44,31 +44,30 @@ export default class authPage extends Component {
 		return;
 	};
 
-	selectedOptionBase = function () {
-		switch (this.state.selectedOption) {
-			case "ENTRAR":
-
-				break;
-			case "CADASTRAR":
-				this.handleSubmit;
-				break;
-		}
-		console.log(this.state.selectedOption);
-		return;
-	}
-
-
-	componentDidMount() {
-		this.selectedOptionStyle();
-		this.selectedOptionBase();
+	componentWillMount() {
+		this.selectedOptionUpdate("ENTRAR");
 	}
 
 	handleSubmit = async () => {
-		const resposta = await api.post("user", {
-			username: this.state.username,
-			password: this.state.password,
+		switch (this.state.selectedOption) {
+			case "ENTRAR":
+				break;
+			case "CADASTRAR":
+				await api.post("user", {
+					username: this.state.username,
+					password: this.state.password
+				});
+				break;
+		}
+	};
 
-		});
+	selectedOptionUpdate = async newState => {
+		await this.asyncSetState(newState);
+		this.selectedOptionStyle();
+	};
+
+	asyncSetState = async newState => {
+		return this.setState({ selectedOption: newState });
 	};
 
 	render() {
@@ -79,9 +78,7 @@ export default class authPage extends Component {
 					<Text
 						style={styles.option}
 						onPress={() => {
-							this.setState({ selectedOption: "ENTRAR" });
-							this.selectedOptionStyle();
-							this.selectedOptionBase();
+							this.selectedOptionUpdate("ENTRAR");
 						}}
 					>
 						entrar
@@ -89,9 +86,7 @@ export default class authPage extends Component {
 					<Text
 						style={styles.option}
 						onPress={() => {
-							this.setState({ selectedOption: "CADASTRAR" });
-							this.selectedOptionStyle();
-							this.selectedOptionBase();
+							this.selectedOptionUpdate("CADASTRAR");
 						}}
 					>
 						cadastrar
@@ -153,7 +148,12 @@ export default class authPage extends Component {
 							/>
 						</View>
 					</View>
-					<TouchableOpacity style={styles.submitButton}>
+					<TouchableOpacity
+						style={styles.submitButton}
+						onPress={() => {
+							handleSubmit();
+						}}
+					>
 						<Text style={styles.submitButtonText}>
 							{this.state.selectedOption}
 						</Text>
