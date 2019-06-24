@@ -17,20 +17,22 @@ export default class productList extends Component {
 		username: "Willian" //teste
 	};
 	renderProductsListSchema = ({ ProductsList }) => {
-<<<<<<< HEAD
-=======
 		return (
 			<View style={styles.container}>
-				<TouchableOpacity style={styles.productListButton} onPress={() => {api.delete(`/productList/${ProductsList._id}`)}}>
-					<Icon name="delete" color={"#6155ea"} size={30}/>
+				<TouchableOpacity
+					style={styles.productListButton}
+					onPress={() => {
+						api.delete(`/productList/${ProductsList._id}`);
+					}}
+				>
+					<Icon name="delete" color={"#6155ea"} size={30} />
 				</TouchableOpacity>
 				<Text style={styles.productListName}>{ProductsList.name}</Text>
 			</View>
 		);
-	}
+	};
 
 	render() {
->>>>>>> 1c39eae85d6480ab360de988c4b473054c1d38ab
 		return (
 			<View style={styles.mainView}>
 				<View style={styles.header}>
@@ -46,22 +48,6 @@ export default class productList extends Component {
 				/>
 			</View>
 		);
-<<<<<<< HEAD
-	};
-
-	render() {
-		return (
-			<View style={styles.container}>
-				<FlatList
-					contentContainerStyle={styles.list}
-					data={this.state.docs}
-					keyExtractor={ProductsList => ProductsList._id}
-					renderProductsListSchema={this.renderProductsListSchema}
-				/>
-			</View>
-		);
-=======
->>>>>>> 1c39eae85d6480ab360de988c4b473054c1d38ab
 	}
 }
 
@@ -89,9 +75,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		textAlignVertical: "center"
 	},
-	productListButton:{
-		
-	},
+	productListButton: {},
 	addButton: {
 		position: "absolute",
 		width: 50,
@@ -122,10 +106,6 @@ const styles = StyleSheet.create({
 		// backgroundColor: "#fff"
 	},
 	productListName: {
-<<<<<<< HEAD
 		color: "#FFF"
-=======
-		color: '#FFF'
->>>>>>> 1c39eae85d6480ab360de988c4b473054c1d38ab
 	}
 });
