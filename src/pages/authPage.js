@@ -16,58 +16,22 @@ export default class authPage extends Component {
 		username: "",
 		password: "",
 		passwordConfirmation: "",
-		selectedOption: ""
+		selectedOption: "ENTRAR"
 	};
-
-	selectedOptionStyle = function() {
-		switch (this.state.selectedOption) {
-			case "ENTRAR":
-				styles.login = {
-					width: 260
-				};
-				styles.signup = {
-					width: 0,
-					height: 0
-				};
-				break;
-			case "CADASTRAR":
-				styles.signup = {
-					width: 260
-				};
-				styles.login = {
-					width: 0,
-					height: 0
-				};
-				break;
-		}
-		console.log(this.state.selectedOption);
-		return;
-	};
-
-	componentWillMount() {
-		this.selectedOptionUpdate("ENTRAR");
-	}
 
 	handleSubmit = async () => {
 		switch (this.state.selectedOption) {
 			case "ENTRAR":
 				break;
 			case "CADASTRAR":
-				await api.post("user", {
-					username: this.state.username,
-					password: this.state.password
-				});
+				if (this.state.passwordConfirmation === this.state.password) {
+					await api.post("user", {
+						username: this.state.username,
+						password: this.state.password
+					});
+				}
 				break;
 		}
-	};
-
-	selectedOptionUpdate = async newState => {
-		await this.asyncSetState(newState);
-		this.selectedOptionStyle();
-	};
-
-	asyncSetState = async newState => {
-		return this.setState({ selectedOption: newState });
 	};
 
 	render() {
@@ -78,7 +42,7 @@ export default class authPage extends Component {
 					<Text
 						style={styles.option}
 						onPress={() => {
-							this.selectedOptionUpdate("ENTRAR");
+							this.setState({ selectedOption: "ENTRAR" });
 						}}
 					>
 						entrar
@@ -86,14 +50,14 @@ export default class authPage extends Component {
 					<Text
 						style={styles.option}
 						onPress={() => {
-							this.selectedOptionUpdate("CADASTRAR");
+							this.setState({ selectedOption: "CADASTRAR" });
 						}}
 					>
 						cadastrar
 					</Text>
 				</View>
 				<View style={styles.auth}>
-					<View style={styles.login}>
+					<View style={this.state.selectedOption === "ENTRAR" ? styles.authForm : styles.hidden}>
 						<View style={styles.form}>
 							<Icon name="person-outline" style={styles.formIcon} />
 							<TextInput
@@ -115,7 +79,7 @@ export default class authPage extends Component {
 						</View>
 					</View>
 
-					<View style={styles.signup}>
+					<View style={this.state.selectedOption === "CADASTRAR" ? styles.authForm : styles.hidden}>
 						<View style={styles.form}>
 							<Icon name="person-outline" style={styles.formIcon} />
 							<TextInput
@@ -150,10 +114,7 @@ export default class authPage extends Component {
 					</View>
 					<TouchableOpacity
 						style={styles.submitButton}
-						onPress={() => {
-							handleSubmit();
-						}}
-					>
+						onPress={() => { this.handleSubmit(); }}>
 						<Text style={styles.submitButtonText}>
 							{this.state.selectedOption}
 						</Text>
@@ -165,12 +126,6 @@ export default class authPage extends Component {
 }
 
 const styles = StyleSheet.create({
-	login: {
-		width: 260
-	},
-	signup: {
-		width: 260
-	},
 	mainView: {
 		flex: 1,
 		backgroundColor: "#6155ea",
@@ -197,18 +152,24 @@ const styles = StyleSheet.create({
 	auth: {
 		padding: 20,
 		borderRadius: 10,
-		width: 300,
+		width: "80%",
 		flexDirection: "column",
 		backgroundColor: "#fff",
 		alignItems: "center",
 		elevation: 2,
 		margin: "auto"
 	},
+	hidden: {
+		display: "none"
+	},
+	authForm: {
+		width: "100%"
+	},
 	form: {
 		flexDirection: "row",
-		textAlignVertical: "center",
 		borderBottomWidth: 1,
-		borderBottomColor: "#5e51e9"
+		borderBottomColor: "#5e51e9",
+		height: 45
 	},
 	formIcon: {
 		flex: 0.1,
@@ -217,6 +178,7 @@ const styles = StyleSheet.create({
 		textAlignVertical: "center"
 	},
 	formInput: {
+		alignItems: "center",
 		flex: 0.9,
 		fontSize: 18
 	},

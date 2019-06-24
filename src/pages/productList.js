@@ -16,6 +16,7 @@ export default class productList extends Component {
 	state = {
 		username: "Willian" //teste
 	};
+	
 	renderProductsListSchema = ({ ProductsList }) => {
 		return (
 			<View style={styles.container}>
@@ -39,13 +40,14 @@ export default class productList extends Component {
 					<Image source={logo} style={styles.logo} />
 				</View>
 				<Icon name="keyboard-arrow-down" color={"#fff"} size={16} />
-
+				<ScrollView>
 				<FlatList
 					contentContainerStyle={styles.list}
 					data={this.state.docs}
 					keyExtractor={ProductsList => ProductsList._id}
 					renderProductsListSchema={this.renderProductsListSchema}
 				/>
+				</ScrollView>
 			</View>
 		);
 	}
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 		marginBottom: 20,
 
-		shadowColor: "6155ea",
+		shadowColor: "#z6155ea",
 		shadowOffset: { width: 0, height: 5 },
 		shadowOpacity: 0.4,
 		shadowRadius: 5,
