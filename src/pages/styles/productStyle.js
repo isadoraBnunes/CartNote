@@ -13,12 +13,6 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		padding: 20,
 		marginBottom: 20,
-
-		shadowColor: "red",
-		shadowOffset: { width: 0, height: 5 },
-		shadowOpacity: 0.4,
-		shadowRadius: 5,
-		elevation: 2
 	},
 	containerList: {
 		flexDirection: "row"

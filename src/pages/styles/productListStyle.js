@@ -1,61 +1,92 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF",
-    borderRadius: 2,
-    padding: 20,
-    marginBottom: 20,
-
-    shadowColor: "#z6155ea",
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.4,
-    shadowRadius: 5,
-    elevation: 2
-  },
-  list: {
-    padding: 20
-  },
   mainView: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "#6155ea",
-    alignContent: "center",
-    alignItems: "center",
-    textAlignVertical: "center"
-  },
-  productListButton: {},
-  addButton: {
-    position: "absolute",
-    width: 50,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    right: 30,
-    bottom: 30,
-    borderRadius: 50,
-    backgroundColor: "#2c1ce0",
-    elevation: 3
+    backgroundColor: "#FFF"
   },
   header: {
-    flex: 0.05,
-    flexDirection: "column",
+    height: 75,
+    width: "100%",
     alignItems: "center",
-    textAlignVertical: "center",
-    marginTop: 10
+    backgroundColor: "#6155ea"
   },
   logo: {
-    flex: 1,
+    flex: 0.9,
     resizeMode: "contain"
   },
-  list: {
+  noneContainerInput: {
+    display: "none"
+  },
+  containerInput: {
+    width: "100%"
+  },
+  inputContainer: {
+    height: 50,
+    flexDirection: "row",
+    borderBottomWidth: 0.3,
+    borderBottomColor: "#6155ea",
+  },
+  formInput: {
     flex: 1,
-    width: 340,
-    marginBottom: 20
-    // backgroundColor: "#fff"
+    fontSize: 20,
+    color: "#6155ea",
+    alignItems: "center",
+  },
+  buttonConfirm: {
+    width: 45,
+    height: "100%",
+    borderRadius: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  container: {
+    margin: "3%",
+    padding: 15,
+    elevation: 2,
+    borderRadius: 3,
+    backgroundColor: "#FFF",
+    justifyContent: "space-around"
+  },
+  containerList: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center"
   },
   productListName: {
-    color: "#FFF"
+    flex: 1,
+    fontSize: 20,
+    color: "#2c1ce0"
+  },
+  productListButton: {
+    width: 45,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  ButtonFooter: {
+    elevation: 1,
+    alignItems: "flex-end"
+  },
+
+  list: {
+    padding: 20
   }
+  // footer: {
+  //   flex: 0.6,
+  //   padding: 2,
+  //   width: "100%",
+  //   flexDirection: "row",
+  //   alignItems: "flex-end",
+
+  //   backgroundColor: "#6155ea"
+  // },
+  // textFooter: {
+  //   color: "#FFF",
+  //   alignItems: "center",
+  //   flex: 0.5,
+  //   fontSize: 18
+  // },
 });
 export default styles;

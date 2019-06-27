@@ -21,9 +21,9 @@ export default class productList extends Component {
     btnListPressed: false
   };
 
-  componentDidMount() {
-    this.loadProductList();
-  }
+  // componentDidMount() {
+  //   this.loadProductList();
+  // }
 
   handleSubmit = async () => {
     const response = await api.post("productList", {
@@ -31,95 +31,129 @@ export default class productList extends Component {
     });
   };
 
-  loadProductList = async () => {
-    try {
-      const response = await api.get("/productList");
-      const { docs, ...productList } = response.data;
-      this.setState({
-        docs: { ...this.state.docs, ...docs },
-        productList
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // loadProductList = async () => {
+  //   try {
+  //     const response = await api.get("/productList");
+  //     const { docs, ...productList } = response.data;
+  //     this.setState({
+  //       docs: { ...this.state.docs, ...docs },
+  //       productList
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  renderProductsList = ({ ProductsList }) => {
-    return (
-      <View style={styles.container}>
-        <View style={style.containerList}>
-          <Text style={styles.productListName}>{ProductsList.name}</Text>
-          <TouchableOpacity
-            style={styles.productListButton}
-            onPress={() => {
-              api.delete(`/productList/${ProductsList._id}`);
-            }}
-          >
-            <Icon name="delete" color={"#6155ea"} size={30} />
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  };
+  // renderProductsList = ({ ProductsList }) => {
+  //   return (
+  //     <View style={styles.container}>
+  //       <View style={style.containerList}>
+  //         <Text style={styles.productListName}>{productsList.name}</Text>
+  //         <TouchableOpacity
+  //           style={styles.productListButton}
+  //           onPress={() => {
+  //             api.delete(`/productList/${ProductsList._id}`);
+  //           }}
+  //         >
+  //           <Icon name="delete" color={"#6155ea"} size={30} />
+  //         </TouchableOpacity>
+  //       </View>
+  //     </View>
+  //   );
+  // };
 
   render() {
     return (
       <View style={styles.mainView}>
         <View style={styles.header}>
-          <Image source={logo} style={styles.logo} />
+          <Image source={logo} style={styles.logo} size={40} />
         </View>
 
         {/* View para conferir se o status é verdadeiro e assim mostrar ou não o input para cadastrar nome da lista */}
         <View
           style={
-            this.state.btnListPressed === false
-              ? styles.noneContainerInput
-              : styles.containerInput
+            this.state.btnListPressed === true
+              ? styles.containerInput
+              : styles.noneContainerInput
           }
         >
           {/* criação do elemento de cadastro da lista */}
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.formInput}
-              placeholder="Nome da Lista"
+              placeholder="Lista"
               value={this.state.name}
             />
+            {/* botão de confirmação para realizar a chamada do método handleSubmit*/}
+            <TouchableOpacity
+              style={styles.buttonConfirm}
+              onPress={() => {
+                this.handleSubmit();
+                this.setState({ btnListPressed: false });
+              }}
+            >
+              <Icon
+                style={styles.CheckButtonConfirm}
+                name="check"
+                color={"#6155ea"}
+                size={30}
+              />
+            </TouchableOpacity>
           </View>
-
-          {/* botão de confirmação para realizar a chamada do método handleSubmit*/}
-          <TouchableOpacity
-            style={style.buttonConfirm}
-            onPress={() => {
-              <Text style={style.TextButtonConfirm}>Ok</Text>;
-              this.handleSubmit();
-            }}
-          />
         </View>
-
         <ScrollView>
-          <FlatList
+          {/* <FlatList
             contentContainerStyle={styles.list}
             data={this.state.docs}
             keyExtractor={ProductsList => ProductsList._id}
             renderProductsList={this.renderProductsList}
-          />
+          /> */}
+          <View style={styles.container}>
+            <View style={styles.containerList}>
+              <Text style={styles.productListName}>mercado</Text>
+              <TouchableOpacity
+                style={styles.productListButton}
+                onPress={() => {
+                  api.delete(`/productList/${ProductsList._id}`);
+                }}
+              >
+                <Icon
+                  style={styles.deleteButtonProductList}
+                  name="delete"
+                  color={"#6155ea"}
+                  size={30}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.container}>
+            <View style={styles.containerList}>
+              <Text style={styles.productListName}>salão</Text>
+              <TouchableOpacity
+                style={styles.productListButton}
+                onPress={() => {
+                  api.delete(`/productList/${ProductsList._id}`);
+                }}
+              >
+                <Icon
+                  style={styles.deleteButtonProductList}
+                  name="delete"
+                  color={"#6155ea"}
+                  size={30}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         </ScrollView>
-
-        <View style={styles.footer}>
-          <Text style={styles.textFooter}>Criar Lista</Text>
-
-          {/* botão criado para alterar o status do btnListPressed para verdadeiro */}
-          <TouchableOpacity
-            style={styles.ButtonFooter}
-            onPress={() => {
-              this.setState({ btnListPressed: true });
-              // this.handleSubmit();
-            }}
-          >
-            <Icon name="keyboard-arrow-down" color={"#fff"} size={16} />
-          </TouchableOpacity>
-        </View>
-      </View>
+            <TouchableOpacity
+              style={styles.ButtonFooter}
+              onPress={() => {
+                this.setState({ btnListPressed: true });
+              }}
+            >
+              <Icon name="add" color={"#6155ea"} size={40} />
+            </TouchableOpacity>
+          </View>
     );
   }
 }
