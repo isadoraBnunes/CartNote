@@ -16,8 +16,8 @@ export default class productList extends Component {
 	state = {
 		username: "Willian" //teste
 	};
-	
-	renderProductsListSchema = ({ ProductsList }) => {
+
+	renderItem = ({ ProductsList }) => {
 		return (
 			<View style={styles.container}>
 				<TouchableOpacity
@@ -41,12 +41,12 @@ export default class productList extends Component {
 				</View>
 				<Icon name="keyboard-arrow-down" color={"#fff"} size={16} />
 				<ScrollView>
-				<FlatList
-					contentContainerStyle={styles.list}
-					data={this.state.docs}
-					keyExtractor={ProductsList => ProductsList._id}
-					renderProductsListSchema={this.renderProductsListSchema}
-				/>
+					<FlatList
+						contentContainerStyle={styles.list}
+						data={this.state.docs}
+						keyExtractor={ProductsList => ProductsList._id}
+						renderProductsListSchema={this.renderItem}
+					/>
 				</ScrollView>
 			</View>
 		);
