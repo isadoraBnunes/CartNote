@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import logo from "../assets/CartNote_logo.png";
-import styles from "./styles/authPageStyle";
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import api from "../services/api";
+import React, { Component } from "react";
+import styles from "./styles/authPageStyle";
+import logo from "../assets/CartNote_logo.png";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 
 export default class authPage extends Component {
 	state = {
