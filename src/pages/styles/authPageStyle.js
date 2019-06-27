@@ -22,7 +22,10 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		textAlign: "center",
 		color: "#FFF",
-		opacity: 0.6
+		opacity: 0.4
+	},
+	selectedOption: {
+		opacity: 1
 	},
 	auth: {
 		padding: 20,

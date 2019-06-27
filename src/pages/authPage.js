@@ -16,14 +16,33 @@ export default class authPage extends Component {
 	handleSubmit = async () => {
 		switch (this.state.selectedOption) {
 			case "ENTRAR":
+				await api
+					.post("authenticate", {
+						username: this.state.username,
+						password: this.state.password
+					})
+					.then(response => {
+						console.warn(response); // redirecionar para a página
+					})
+					.catch(err => {
+						const e = err.response;
+						if (e.status === 400 && e.data.error === "User not found")
+							console.warn(err.response); // mostrar qual campo está errado
+					});
 				break;
 			case "CADASTRAR":
 				if (this.state.passwordConfirmation === this.state.password) {
-					const response = await api.post("user", {
-						name: this.state.username,
-						password: this.state.password
-					});
-					console.log(response);
+					await api
+						.post("register", {
+							username: this.state.username,
+							password: this.state.password
+						})
+						.then(response => {
+							this.setState({ password: "", selectedOption: "ENTRAR" });
+						})
+						.catch(err => {
+							//possiveis erros
+						});
 				}
 				break;
 		}
@@ -35,20 +54,30 @@ export default class authPage extends Component {
 				<Image source={logo} style={styles.logo} />
 				<View name="ide" style={styles.options}>
 					<Text
-						style={styles.option}
+						style={[
+							styles.option,
+							this.state.selectedOption === "ENTRAR"
+								? styles.selectedOption
+								: ""
+						]}
 						onPress={() => {
 							this.setState({ selectedOption: "ENTRAR" });
 						}}
 					>
-						entrar
+						signin
 					</Text>
 					<Text
-						style={styles.option}
+						style={[
+							styles.option,
+							this.state.selectedOption === "CADASTRAR"
+								? styles.selectedOption
+								: ""
+						]}
 						onPress={() => {
 							this.setState({ selectedOption: "CADASTRAR" });
 						}}
 					>
-						cadastrar
+						signup
 					</Text>
 				</View>
 				<View style={styles.auth}>
