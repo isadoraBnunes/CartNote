@@ -48,7 +48,9 @@ export default class productList extends Component {
   //   return (
   //     <View style={styles.container}>
   //       <View style={style.containerList}>
-  //         <Text style={styles.productListName}>{productsList.name}</Text>
+  //         <TouchableOpacity style={styles.containerBotton} onPress={() => { this.props.navigation.navigate('product') }}>
+  //          <Text style={styles.productListName}>{productsList.name}</Text>
+  //         </TouchableOpacity>
   //         <TouchableOpacity
   //           style={styles.productListButton}
   //           onPress={() => {
@@ -110,7 +112,14 @@ export default class productList extends Component {
           /> */}
           <View style={styles.container}>
             <View style={styles.containerList}>
-              <Text style={styles.productListName}>mercado</Text>
+              <TouchableOpacity
+                style={styles.containerBotton}
+                onPress={() => {
+                  this.props.navigation.navigate("product");
+                }}
+              >
+                <Text style={styles.productListName}>mercado</Text>
+              </TouchableOpacity>
               <TouchableOpacity
                 style={styles.productListButton}
                 onPress={() => {
@@ -145,15 +154,15 @@ export default class productList extends Component {
             </View>
           </View>
         </ScrollView>
-            <TouchableOpacity
-              style={styles.ButtonFooter}
-              onPress={() => {
-                this.setState({ btnListPressed: true });
-              }}
-            >
-              <Icon name="add" color={"#6155ea"} size={40} />
-            </TouchableOpacity>
-          </View>
+        <TouchableOpacity
+          style={styles.ButtonFooter}
+          onPress={() => {
+            this.setState({ btnListPressed: true });
+          }}
+        >
+          <Icon name="add" color={"#6155ea"} size={40} />
+        </TouchableOpacity>
+      </View>
     );
   }
 }

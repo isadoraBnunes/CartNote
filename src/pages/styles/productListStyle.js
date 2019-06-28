@@ -47,17 +47,23 @@ const styles = StyleSheet.create({
     elevation: 2,
     borderRadius: 3,
     backgroundColor: "#FFF",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
   },
   containerList: {
+    flexDirection: "row",
+  },
+  containerBotton:{
+    flex: 1,
     alignItems: "center",
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   productListName: {
     flex: 1,
     fontSize: 20,
-    color: "#2c1ce0"
+    color: "#2c1ce0",
+    alignItems: "center",
+    justifyContent: "center",
   },
   productListButton: {
     width: 45,
