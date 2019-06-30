@@ -21,48 +21,54 @@ export default class productList extends Component {
     btnListPressed: false
   };
 
-  // componentDidMount() {
-  //   this.loadProductList();
-  // }
+  componentDidMount() {
+    this.loadProductList();
+  }
 
   handleSubmit = async () => {
-    const response = await api.post("productList", {
+    // const response =
+     await api.post("/productList", {
       name: this.state.name
     });
   };
 
-  // loadProductList = async () => {
-  //   try {
-  //     const response = await api.get("/productList");
-  //     const { docs, ...productList } = response.data;
-  //     this.setState({
-  //       docs: { ...this.state.docs, ...docs },
-  //       productList
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  loadProductList = async () => {
+    try {
+      const response = await api.get('/productList');
+      const { docs, ...productList } = response.data;
+      this.setState({
+        docs: { ...this.state.docs, ...docs },
+        productList
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // renderProductsList = ({ ProductsList }) => {
-  //   return (
-  //     <View style={styles.container}>
-  //       <View style={style.containerList}>
-  //         <TouchableOpacity style={styles.containerBotton} onPress={() => { this.props.navigation.navigate('product') }}>
-  //          <Text style={styles.productListName}>{productsList.name}</Text>
-  //         </TouchableOpacity>
-  //         <TouchableOpacity
-  //           style={styles.productListButton}
-  //           onPress={() => {
-  //             api.delete(`/productList/${ProductsList._id}`);
-  //           }}
-  //         >
-  //           <Icon name="delete" color={"#6155ea"} size={30} />
-  //         </TouchableOpacity>
-  //       </View>
-  //     </View>
-  //   );
-  // };
+  renderProductsList = ({ ProductsList }) => {
+    return (
+      <View style={styles.container}>
+        <View style={style.containerList}>
+          <TouchableOpacity
+            style={styles.containerBotton}
+            onPress={() => {
+              this.props.navigation.navigate("product");
+            }}
+          >
+            <Text style={styles.productListName}>{productsList.name}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.productListButton}
+            onPress={() => {
+              api.delete(`/productList/${ProductsList._id}`);
+            }}
+          >
+            <Icon name="delete" color={"#6155ea"} size={30} />
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
 
   render() {
     return (
@@ -85,6 +91,7 @@ export default class productList extends Component {
               style={styles.formInput}
               placeholder="Lista"
               value={this.state.name}
+              onChangeText={text => this.setState({ name: text })}
             />
             {/* botão de confirmação para realizar a chamada do método handleSubmit*/}
             <TouchableOpacity
@@ -104,55 +111,12 @@ export default class productList extends Component {
           </View>
         </View>
         <ScrollView>
-          {/* <FlatList
+          <FlatList
             contentContainerStyle={styles.list}
             data={this.state.docs}
             keyExtractor={ProductsList => ProductsList._id}
             renderProductsList={this.renderProductsList}
-          /> */}
-          <View style={styles.container}>
-            <View style={styles.containerList}>
-              <TouchableOpacity
-                style={styles.containerBotton}
-                onPress={() => {
-                  this.props.navigation.navigate("product");
-                }}
-              >
-                <Text style={styles.productListName}>mercado</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.productListButton}
-                onPress={() => {
-                  api.delete(`/productList/${ProductsList._id}`);
-                }}
-              >
-                <Icon
-                  style={styles.deleteButtonProductList}
-                  name="delete"
-                  color={"#6155ea"}
-                  size={30}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.container}>
-            <View style={styles.containerList}>
-              <Text style={styles.productListName}>salão</Text>
-              <TouchableOpacity
-                style={styles.productListButton}
-                onPress={() => {
-                  api.delete(`/productList/${ProductsList._id}`);
-                }}
-              >
-                <Icon
-                  style={styles.deleteButtonProductList}
-                  name="delete"
-                  color={"#6155ea"}
-                  size={30}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
+          />
         </ScrollView>
         <TouchableOpacity
           style={styles.ButtonFooter}
