@@ -1,5 +1,6 @@
 import api from "../services/api";
 import React, { Component } from "react";
+import { AsyncStorage } from "react-native";
 import logo from "../assets/CartNote_logo.png";
 // import styles from "../../styles/productListStyle";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -30,20 +31,32 @@ export default class productList extends Component {
 			this.setState({
 				docs: response.data.docs
 			});
+			console.log(this.state.docs);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 	handleNewList = async () => {
-		await api.post("productList", {
+		let data = {
 			name: this.state.newListName
-		});
-		this.setState({ btnNewPressed: false, newListName: "" });
-		this.loadProductLists();
+		};
+		const token = await AsyncStorage.getItem("token");
+		let config = {
+			headers: {
+				Authorization: "Bearer " + token,
+				Accept: "application/json",
+				"Content-Type": "application/json"
+			}
+		};
+		await api.post("productList", data, config);
+		this.setState({ btnNewPressed: false, newListName: "" }, () =>
+			this.loadProductLists()
+		);
 	};
 
 	handleDeleteList = async itemId => {
+		console.log(itemId);
 		await api.delete("productList/" + itemId);
 		this.loadProductLists();
 	};
