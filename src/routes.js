@@ -1,10 +1,16 @@
-import { createStackNavigator } from "../node_modules/react-navigation";
-import productList from "./pages/productList"
-import authPage  from "./pages/authPage";
-import product  from "./pages/product";
+import { createStackNavigator } from "react-navigation";
+import authPage from "./pages/authPage";
+import productList from "./pages/productList";
 
-export default createStackNavigator({
-    product,
-    authPage,
-    productList
-  });
+export default createStackNavigator(
+	{
+		authPage,
+		productList
+	},
+	{
+		headerMode: "none",
+		navigationOptions: {
+			headerVisible: false
+		}
+	}
+);

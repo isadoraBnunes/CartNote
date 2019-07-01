@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\WJML\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+  C:\Program Files\nodejs\node.exe C:\Users\WJML\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add ReactNativeComponentTree
 
 PATH: 
   C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Users\WJML\AppData\Local\Programs\Git\cmd;C:\Go\bin;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\WJML\AppData\Local\Microsoft\WindowsApps;C:\Users\WJML\AppData\Roaming\npm;C:\Users\WJML\AppData\Local\Programs\Microsoft VS Code\bin;C:\Android\Sdk\platform-tools;C:\Android\Sdk\tools;C:\Users\WJML\go\bin
@@ -14,8 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: connect EHOSTUNREACH 104.16.18.35:443
-      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1054:14)
+  Error: https://registry.yarnpkg.com/ReactNativeComponentTree: Not found
+      at Request.params.callback [as _callback] (C:\Users\WJML\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66091:18)
+      at Request.self.callback (C:\Users\WJML\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129590:22)
+      at Request.emit (events.js:196:13)
+      at Request.<anonymous> (C:\Users\WJML\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130562:10)
+      at Request.emit (events.js:196:13)
+      at IncomingMessage.<anonymous> (C:\Users\WJML\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130484:12)
+      at Object.onceWrapper (events.js:284:20)
+      at IncomingMessage.emit (events.js:201:15)
+      at endReadableNT (_stream_readable.js:1130:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:9)
 
 npm manifest: 
   {

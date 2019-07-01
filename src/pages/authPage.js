@@ -1,9 +1,16 @@
 import api from "../services/api";
 import React, { Component } from "react";
-import styles from "./styles/authPageStyle";
+import { AsyncStorage } from "react-native";
 import logo from "../assets/CartNote_logo.png";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import {
+	View,
+	Text,
+	TextInput,
+	TouchableOpacity,
+	Image,
+	StyleSheet
+} from "react-native";
 
 export default class authPage extends Component {
 	state = {
@@ -22,13 +29,16 @@ export default class authPage extends Component {
 						password: this.state.password
 					})
 					.then(response => {
-						console.warn(response); // redirecionar para a página
+						AsyncStorage.setItem("token", `${response.data.token}`);
+						this.props.navigation.navigate("productList");
+						//console.warn(response); // redirecionar para a página
 					})
 					.catch(err => {
 						const e = err.response;
 						if (e.status === 400 && e.data.error === "User not found")
 							console.warn(err.response); // mostrar qual campo está errado
 					});
+
 				break;
 			case "CADASTRAR":
 				if (this.state.passwordConfirmation === this.state.password) {
@@ -37,8 +47,12 @@ export default class authPage extends Component {
 							username: this.state.username,
 							password: this.state.password
 						})
-						.then(response => {
-							this.setState({ password: "", selectedOption: "ENTRAR" });
+						.then(data => {
+							this.setState({
+								password: "",
+								passwordConfirmation: "",
+								selectedOption: "ENTRAR"
+							});
 						})
 						.catch(err => {
 							//possiveis erros
@@ -92,6 +106,7 @@ export default class authPage extends Component {
 							<Icon name="person-outline" style={styles.formIcon} />
 							<TextInput
 								style={styles.formInput}
+								returnKeyType="next"
 								placeholder="Usuário"
 								value={this.state.username}
 								onChangeText={text => this.setState({ username: text })}
@@ -163,3 +178,80 @@ export default class authPage extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	mainView: {
+		flex: 1,
+		backgroundColor: "#6155ea",
+		alignItems: "center",
+		textAlignVertical: "center"
+	},
+	logo: {
+		marginTop: 100,
+		marginBottom: 30
+	},
+	options: {
+		marginTop: 20,
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginBottom: 10
+	},
+	option: {
+		flex: 0.4,
+		fontSize: 20,
+		textAlign: "center",
+		color: "#FFF",
+		opacity: 0.4
+	},
+	selectedOption: {
+		opacity: 1
+	},
+	auth: {
+		padding: 20,
+		borderRadius: 10,
+		width: "80%",
+		flexDirection: "column",
+		backgroundColor: "#fff",
+		alignItems: "center",
+		elevation: 2,
+		margin: "auto"
+	},
+	hidden: {
+		display: "none"
+	},
+	authForm: {
+		width: "100%"
+	},
+	form: {
+		flexDirection: "row",
+		borderBottomWidth: 1,
+		borderBottomColor: "#5e51e9",
+		height: 45
+	},
+	formIcon: {
+		flex: 0.1,
+		color: "#5e51e9",
+		fontSize: 24,
+		textAlignVertical: "center"
+	},
+	formInput: {
+		alignItems: "center",
+		flex: 0.9,
+		fontSize: 18
+	},
+	submitButton: {
+		marginTop: 25,
+		height: 45,
+		width: 150,
+		borderRadius: 5,
+		alignItems: "center",
+		justifyContent: "center",
+		backgroundColor: "#2c1ce0",
+		elevation: 1
+	},
+	submitButtonText: {
+		color: "#fff",
+		fontSize: 16,
+		fontWeight: "bold"
+	}
+});
